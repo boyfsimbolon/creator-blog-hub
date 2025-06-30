@@ -4,8 +4,8 @@ import { Post, Project, Skill } from '../types';
 
 // Konfigurasi Supabase
 // PENTING: Ganti dengan kredensial Supabase yang sebenarnya
-const SUPABASE_URL = 'https://your-project-id.supabase.co';
-const SUPABASE_ANON_KEY = 'your-anon-key';
+const SUPABASE_URL = 'https://rwfhxculqcfcdxlcwwpb.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ3Zmh4Y3VscWNmY2R4bGN3d3BiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTEyNTgzOTQsImV4cCI6MjA2NjgzNDM5NH0.F0_oiY8Ug1bNZFxmXiZ63eA4-HwyPy0tD40YnEvZycU';
 
 export const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
