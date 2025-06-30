@@ -37,7 +37,7 @@ const Admin: React.FC = () => {
   } = useForm<BlogFormData>({
     resolver: zodResolver(blogSchema),
     defaultValues: {
-      author: 'Nama Anda'
+      author: 'Boy Full Simbolon'
     }
   });
 
