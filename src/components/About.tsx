@@ -6,44 +6,26 @@ import { Experience, Education } from '../types';
 const About: React.FC = () => {
   // Data dummy untuk pengalaman
   const experiences: Experience[] = [
-    {
-      id: '1',
-      company: 'Tech Startup ABC',
-      position: 'Senior Frontend Developer',
-      duration: '2022 - Sekarang',
-      description: 'Memimpin pengembangan aplikasi web menggunakan React, TypeScript, dan modern web technologies. Meningkatkan performa aplikasi hingga 40% dan membantu tim dalam implementasi best practices.',
-      technologies: ['React', 'TypeScript', 'Next.js', 'Tailwind CSS', 'GraphQL'],
-      location: 'Jakarta, Indonesia'
-    },
-    {
-      id: '2',
-      company: 'Digital Agency XYZ',
-      position: 'Frontend Developer',
-      duration: '2020 - 2022',
-      description: 'Mengembangkan berbagai website dan aplikasi web untuk klien dari berbagai industri. Berkolaborasi dengan tim design dan backend untuk menciptakan user experience yang optimal.',
-      technologies: ['React', 'Vue.js', 'SASS', 'JavaScript', 'WordPress'],
-      location: 'Bandung, Indonesia'
-    },
-    {
-      id: '3',
-      company: 'Freelancer',
-      position: 'Web Developer',
-      duration: '2019 - 2020',
-      description: 'Menangani proyek-proyek web development secara freelance, dari landing page hingga aplikasi web kompleks. Mempelajari berbagai teknologi dan framework modern.',
-      technologies: ['HTML', 'CSS', 'JavaScript', 'PHP', 'MySQL'],
-      location: 'Remote'
-    }
   ];
 
   const education: Education[] = [
     {
       id: '1',
-      institution: 'Universitas Teknologi Indonesia',
-      degree: 'Sarjana Teknik',
+      institution: 'Universitas Advent Indonesia',
+      degree: 'Sarjana Ilmu Komputer',
       field: 'Teknik Informatika',
-      duration: '2015 - 2019',
-      gpa: '3.75',
+      duration: '2022 - 2025',
+      gpa: '3.98/4.0',
       description: 'Fokus pada pengembangan software dan sistem informasi. Aktif dalam organisasi mahasiswa dan berbagai kompetisi programming.'
+    }
+    {
+      id: '2',
+      institution: 'SMA Negeri 1 Samarinda',
+      degree: 'SMA Sederajat',
+      field: 'MIPA (Matematika Ilmu Pengetahuan Alam)',
+      duration: '2019 - 2022',
+      gpa: '93/100',
+      description: 'Fokus pada Pengetahuan SAINTEK. Aktif dalam organisasi di sekolah dan berbagai kompetisi astronomi.'
     }
   ];
 

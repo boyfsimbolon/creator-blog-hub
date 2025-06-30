@@ -12,7 +12,7 @@ const SEO: React.FC<SEOProps> = ({
   description,
   keywords,
   image = 'https://via.placeholder.com/1200x630/6366f1/ffffff?text=Portfolio',
-  url = 'https://yoursite.com',
+  url = 'https://boyfsimbolon.netlify.app',
   type = 'website',
   publishedTime,
   modifiedTime,

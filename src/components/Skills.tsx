@@ -10,37 +10,6 @@ const Skills: React.FC = () => {
 
   // Data dummy untuk demo
   const dummySkills: Skill[] = [
-    // Frontend Skills
-    { id: '1', name: 'HTML5', level: 95, category: 'frontend', icon: '🌐' },
-    { id: '2', name: 'CSS3', level: 90, category: 'frontend', icon: '🎨' },
-    { id: '3', name: 'JavaScript', level: 90, category: 'frontend', icon: '⚡' },
-    { id: '4', name: 'TypeScript', level: 85, category: 'frontend', icon: '📘' },
-    { id: '5', name: 'React', level: 92, category: 'frontend', icon: '⚛️' },
-    { id: '6', name: 'Next.js', level: 80, category: 'frontend', icon: '🚀' },
-    { id: '7', name: 'Vue.js', level: 75, category: 'frontend', icon: '💚' },
-    { id: '8', name: 'Tailwind CSS', level: 88, category: 'frontend', icon: '💨' },
-    
-    // Backend Skills
-    { id: '9', name: 'Node.js', level: 80, category: 'backend', icon: '🟢' },
-    { id: '10', name: 'Express.js', level: 78, category: 'backend', icon: '🚂' },
-    { id: '11', name: 'Supabase', level: 85, category: 'backend', icon: '🔋' },
-    { id: '12', name: 'PostgreSQL', level: 75, category: 'backend', icon: '🐘' },
-    { id: '13', name: 'MongoDB', level: 70, category: 'backend', icon: '🍃' },
-    { id: '14', name: 'GraphQL', level: 65, category: 'backend', icon: '📊' },
-    
-    // Tools & Others
-    { id: '15', name: 'Git', level: 88, category: 'tools', icon: '📦' },
-    { id: '16', name: 'Docker', level: 70, category: 'tools', icon: '🐳' },
-    { id: '17', name: 'VS Code', level: 95, category: 'tools', icon: '💻' },
-    { id: '18', name: 'Figma', level: 75, category: 'tools', icon: '🎯' },
-    { id: '19', name: 'Vercel', level: 82, category: 'tools', icon: '▲' },
-    { id: '20', name: 'AWS', level: 60, category: 'tools', icon: '☁️' },
-    
-    // Other Skills
-    { id: '21', name: 'UI/UX Design', level: 80, category: 'other', icon: '🎨' },
-    { id: '22', name: 'SEO', level: 75, category: 'other', icon: '📈' },
-    { id: '23', name: 'Performance Optimization', level: 82, category: 'other', icon: '⚡' },
-    { id: '24', name: 'Responsive Design', level: 90, category: 'other', icon: '📱' }
   ];
 
   useEffect(() => {

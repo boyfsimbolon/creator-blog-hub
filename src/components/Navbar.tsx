@@ -53,7 +53,7 @@ const Navbar: React.FC = () => {
             whileHover={{ scale: 1.05 }}
             onClick={() => scrollToSection('#home')}
           >
-            Nama Anda
+            Boy Full Simbolon
           </motion.div>
 
           {/* Desktop Navigation */}
