@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Post } from '../types';
@@ -7,6 +8,7 @@ const Blog: React.FC = () => {
   const [posts, setPosts] = useState<Post[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedPost, setSelectedPost] = useState<Post | null>(null);
+  const [showAllPosts, setShowAllPosts] = useState(false);
 
   // Data dummy untuk demo
   const dummyPosts: Post[] = [
@@ -18,7 +20,7 @@ const Blog: React.FC = () => {
       try {
         setLoading(true);
         // Coba ambil dari Supabase, jika gagal gunakan dummy data
-        const supabasePosts = await getBlogPosts(4);
+        const supabasePosts = await getBlogPosts(showAllPosts ? undefined : 4);
         
         if (supabasePosts.length > 0) {
           setPosts(supabasePosts);
@@ -35,7 +37,7 @@ const Blog: React.FC = () => {
     };
 
     loadPosts();
-  }, []);
+  }, [showAllPosts]);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -68,6 +70,10 @@ const Blog: React.FC = () => {
     document.body.style.overflow = 'unset';
   };
 
+  const handleViewAllPosts = () => {
+    setShowAllPosts(!showAllPosts);
+  };
+
   if (loading) {
     return (
       <section id="blog" className="py-20 bg-muted/30">
@@ -80,6 +86,10 @@ const Blog: React.FC = () => {
       </section>
     );
   }
+
+  const displayPosts = showAllPosts ? posts : posts.slice(0, 4);
+  const shouldShowFeatured = !showAllPosts && posts.length > 0;
+  const gridPosts = shouldShowFeatured ? displayPosts.slice(1) : displayPosts;
 
   return (
     <>
@@ -102,8 +112,8 @@ const Blog: React.FC = () => {
               </p>
             </motion.div>
 
-            {/* Featured Post */}
-            {posts.length > 0 && (
+            {/* Featured Post - Only show when not viewing all posts */}
+            {shouldShowFeatured && (
               <motion.div variants={itemVariants} className="mb-16">
                 <div className="bg-card rounded-2xl overflow-hidden shadow-xl">
                   <div className="grid md:grid-cols-2 gap-0">
@@ -150,12 +160,12 @@ const Blog: React.FC = () => {
               </motion.div>
             )}
 
-            {/* Other Posts Grid */}
+            {/* Posts Grid */}
             <motion.div
               variants={containerVariants}
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+              className={`grid grid-cols-1 md:grid-cols-2 ${showAllPosts ? 'lg:grid-cols-4' : 'lg:grid-cols-3'} gap-8`}
             >
-              {posts.slice(1).map((post) => (
+              {gridPosts.map((post) => (
                 <motion.article
                   key={post.id}
                   variants={itemVariants}
@@ -202,14 +212,15 @@ const Blog: React.FC = () => {
             {/* Call to Action */}
             <motion.div variants={itemVariants} className="text-center mt-16">
               <p className="text-muted-foreground mb-6">
-                Ingin membaca lebih banyak artikel menarik?
+                {showAllPosts ? 'Menampilkan semua artikel' : 'Ingin membaca lebih banyak artikel menarik?'}
               </p>
               <motion.button
+                onClick={handleViewAllPosts}
                 className="px-8 py-3 border-2 border-primary text-primary rounded-full font-medium hover:bg-primary hover:text-primary-foreground transition-colors"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                Lihat Semua Artikel
+                {showAllPosts ? 'Tampilkan Lebih Sedikit' : 'Lihat Semua Artikel'}
               </motion.button>
             </motion.div>
           </motion.div>
