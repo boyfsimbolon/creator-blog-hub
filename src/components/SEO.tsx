@@ -44,17 +44,17 @@ const SEO: React.FC<SEOProps> = ({
         <meta property="article:modified_time" content={modifiedTime} />
       )}
 
-      {/* Twitter */}
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content={fullTitle} />
-      <meta name="twitter:description" content={description} />
-      <meta name="twitter:image" content={image} />
-      <meta name="twitter:site" content="@yourusername" />
-      <meta name="twitter:creator" content="@yourusername" />
+      {/* instagram */}
+      <meta name="instagram:card" content="summary_large_image" />
+      <meta name="instagram:title" content={fullTitle} />
+      <meta name="instagram:description" content={description} />
+      <meta name="instagram:image" content={image} />
+      <meta name="instagram:site" content="@boysmbln" />
+      <meta name="instagram:creator" content="@boysmbln" />
 
       {/* Additional meta tags */}
       <meta name="robots" content="index, follow" />
-      <meta name="author" content="Nama Anda" />
+      <meta name="author" content="Boy Full Simbolon" />
       <meta name="theme-color" content="#6366f1" />
 
       {children}
