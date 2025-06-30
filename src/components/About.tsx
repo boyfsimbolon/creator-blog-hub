@@ -17,7 +17,7 @@ const About: React.FC = () => {
       duration: '2022 - 2025',
       gpa: '3.98/4.0',
       description: 'Fokus pada pengembangan software dan sistem informasi. Aktif dalam organisasi mahasiswa dan berbagai kompetisi programming.'
-    }
+    },
     {
       id: '2',
       institution: 'SMA Negeri 1 Samarinda',
