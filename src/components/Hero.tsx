@@ -34,16 +34,42 @@ const Hero: React.FC = () => {
         <div className="flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-16">
           {/* Gambar Profil */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="order-2 lg:order-1 w-48 h-48 md:w-64 md:h-64 lg:w-80 lg:h-80 rounded-full overflow-hidden border-4 border-white/30 shadow-xl"
-          >
-            <img 
-              src="/profile.jpg" // Ganti dengan path gambar profil Anda
-              alt="Boy Full Simbolon"
-              className="w-full h-full object-cover"
-            />
+        initial={{ opacity: 0, x: -30 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+        className="order-2 lg:order-1 w-48 h-48 md:w-64 md:h-64 lg:w-80 lg:h-80 lg:block hidden relative overflow-hidden rounded-md"
+      >
+        {/* Border glow animasi */}
+        <motion.div
+          className="absolute inset-0 z-0"
+          style={{
+            boxShadow: "0 0 15px 5px rgba(255, 215, 0, 0.7)",
+            borderImage: "linear-gradient(45deg, gold, yellow, orange) 1"
+          }}
+          animate={{ rotate: 360 }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "linear"
+          }}
+        />
+
+        {/* Border samping dan bawah */}
+        <div className="absolute inset-0 border-l-4 border-r-4 border-b-4 border-white/30 shadow-xl z-10 rounded-t-full pointer-events-none" />
+
+        {/* Gambar utama */}
+        <div className="absolute z-999 top-[-20px]">
+          <img
+            src="/my1.png"
+            alt="Boy Full Simbolon"
+          />
+
+          {/* Gradient bottom fade */}
+          <div className="absolute bottom-0 left-0 w-full h-1/4 bg-gradient-to-t from-white/30 to-transparent" />
+        </div>
+
+        {/* Border bawah ekstra */}
+        <div className="absolute bottom-0 left-0 w-full h-1 bg-white/50 z-30" />
           </motion.div>
 
           {/* Konten Teks */}

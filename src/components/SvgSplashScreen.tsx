@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useEffect, useRef, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface SvgSplashScreenProps {
   children: React.ReactNode;
@@ -9,40 +9,49 @@ const SvgSplashScreen: React.FC<SvgSplashScreenProps> = ({ children }) => {
   const [showSplash, setShowSplash] = useState(true);
   const carouselRef = useRef<HTMLDivElement>(null);
 
-  // Auto scroll + hide after 7s
-  useEffect(() => {
-    const timer = setTimeout(() => setShowSplash(false), 7000);
+  const svgs = [
+    { icon: "/icons1.svg", title: "Anu" },
+    { icon: "/icons2.svg", title: "berno" },
+    { icon: "/icons3.svg", title: "benar" },
+    { icon: "/icons4.svg", title: "astagah" },
+    { icon: "/icons5.svg", title: "sakit" },
+    { icon: "/icons6.svg", title: "uhuk" },
+    { icon: "/icons7.svg", title: "beneran" },
+    { icon: "/icons8.svg", title: "sakit oi" },
+  ];
 
-    const scrollInterval = setInterval(() => {
+  // Duplikat array untuk infinite scroll halus
+  const duplicatedSvgs = [...svgs, ...svgs];
+
+  useEffect(() => {
+    const timer = setTimeout(() => setShowSplash(false), 17000);
+
+    const scrollSpeed = 0.5; // px per tick
+    const interval = setInterval(() => {
       const container = carouselRef.current;
       if (container) {
-        container.scrollLeft += 0.5;
-        if (container.scrollLeft + container.offsetWidth >= container.scrollWidth) {
-          container.scrollLeft = 0;
+        container.scrollLeft -= scrollSpeed;
+
+        if (container.scrollLeft <= 0) {
+          container.scrollLeft = container.scrollWidth / 2;
         }
       }
     }, 16);
 
+    // Set scrollLeft awal ke tengah supaya mulai dari ikon pertama duplikat kedua
+    if (carouselRef.current) {
+      carouselRef.current.scrollLeft = carouselRef.current.scrollWidth / 2;
+    }
+
     return () => {
       clearTimeout(timer);
-      clearInterval(scrollInterval);
+      clearInterval(interval);
     };
   }, []);
 
-  const svgs = [
-    "icons1.svg",
-    "icons2.svg",
-    "icons3.svg",
-    "icons4.svg",
-    "icons5.svg",
-    "icons6.svg",
-    "icons7.svg",
-    "icons8.svg",
-  ];
-
   return (
     <div className="w-full h-screen">
-      <AnimatePresence>
+      <AnimatePresence mode="wait">
         {showSplash ? (
           <motion.div
             key="splash"
@@ -50,24 +59,31 @@ const SvgSplashScreen: React.FC<SvgSplashScreenProps> = ({ children }) => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 1 }}
-            className="w-full h-screen flex items-center px-[30px] justify-center bg-white dark:bg-gray-900"
+            className="w-full h-screen flex items-center justify-center bg-white dark:bg-gray-900 px-6"
           >
             <div
               ref={carouselRef}
-              className="flex gap-6 overflow-hidden px-6 py-4"
-              style={{ scrollBehavior: 'smooth' }}
+              className="flex gap-6 overflow-x-hidden whitespace-nowrap"
+              style={{ width: 350, scrollBehavior: "auto" }}
             >
-              {svgs.map((src, i) => (
-                <motion.img
+              {duplicatedSvgs.map((item, i) => (
+                <motion.div
                   key={i}
-                  src={src}
-                  alt={`icon-${i}`}
-                  className="w-8 h-8 object-contain shrink-0"
-                  whileHover={{ scale: 1.2 }}
+                  className="flex flex-col items-center shrink-0 w-16"
                   initial={{ y: -10, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
-                  transition={{ duration: 0.5, delay: i * 0.1 }}
-                />
+                  transition={{ duration: 0.5, delay: (i % svgs.length) * 0.1 }}
+                  whileHover={{ scale: 1.2 }}
+                >
+                  <img
+                    src={item.icon}
+                    alt={`icon-${i}`}
+                    className="w-8 h-8 object-contain"
+                  />
+                  <span className="mt-1 text-xs text-center text-gray-700 dark:text-gray-300">
+                    {item.title}
+                  </span>
+                </motion.div>
               ))}
             </div>
           </motion.div>
@@ -77,6 +93,7 @@ const SvgSplashScreen: React.FC<SvgSplashScreenProps> = ({ children }) => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
+            className="w-full h-full"
           >
             {children}
           </motion.div>
