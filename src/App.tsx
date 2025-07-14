@@ -3,7 +3,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { HelmetProvider } from 'react-helmet-async';
 import { ThemeProvider } from './components/ThemeToggle';
 
@@ -14,16 +14,32 @@ import SvgSplashScreen from "./components/SvgSplashScreen";
 
 const queryClient = new QueryClient();
 
-const App: React.FC = () => {
+// Buat komponen pembungkus yang cek route dan handle splash screen khusus untuk "/"
+const SplashRouteWrapper: React.FC<{children: React.ReactNode}> = ({ children }) => {
+  const location = useLocation();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Splash screen tampil 2 detik
-    const timer = setTimeout(() => setLoading(false), 2000);
-    return () => clearTimeout(timer);
-  }, []);
+    if (location.pathname === "/") {
+      setLoading(true);
+      const timer = setTimeout(() => setLoading(false), 12000);
+      return () => clearTimeout(timer);
+    } else {
+      // Untuk route selain "/", langsung set loading false
+      setLoading(false);
+    }
+  }, [location.pathname]);
 
+  if (loading) {
+    // Tampilkan splash saat loading true
+    return <SvgSplashScreen>{null}</SvgSplashScreen>;
+  }
 
+  // Setelah loading false, tampilkan children (halaman normal)
+  return <>{children}</>;
+};
+
+const App: React.FC = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <HelmetProvider>
@@ -31,15 +47,15 @@ const App: React.FC = () => {
           <TooltipProvider>
             <Toaster />
             <Sonner />
-            <SvgSplashScreen>
-                <BrowserRouter>
-                  <Routes>
-                    <Route path="/" element={<Index />} />
-                    <Route path="/admin" element={<Admin />} />
-                    <Route path="*" element={<NotFound />} />
-                  </Routes>
-                </BrowserRouter>
-            </SvgSplashScreen>
+            <BrowserRouter>
+              <SplashRouteWrapper>
+                <Routes>
+                  <Route path="/" element={<Index />} />
+                  <Route path="/admin" element={<Admin />} />
+                  <Route path="*" element={<NotFound />} />
+                </Routes>
+              </SplashRouteWrapper>
+            </BrowserRouter>
           </TooltipProvider>
         </ThemeProvider>
       </HelmetProvider>

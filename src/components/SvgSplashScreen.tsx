@@ -24,7 +24,7 @@ const SvgSplashScreen: React.FC<SvgSplashScreenProps> = ({ children }) => {
   const duplicatedSvgs = [...svgs, ...svgs];
 
   useEffect(() => {
-    const timer = setTimeout(() => setShowSplash(false), 17000);
+    const timer = setTimeout(() => setShowSplash(false), 12000);
 
     const scrollSpeed = 0.5; // px per tick
     const interval = setInterval(() => {
