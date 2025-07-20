@@ -24,7 +24,7 @@ const Index: React.FC = () => {
         keywords="portofolio, blog, pengembang web, React, TypeScript, Supabase, frontend developer, fullstack developer, Jakarta"
         url="https://boyfsimbolon.netlify.app"
         type="website"
-      />
+      /><meta name="google-site-verification" content="aAoUdOWD9Gfpa0cDdqe29I8W-Enhie8sEIqTRwv3Hoo" />
       
       <div className="min-h-screen bg-background text-foreground">
         {/* Navigation */}
